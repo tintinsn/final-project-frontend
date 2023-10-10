@@ -14,6 +14,7 @@ const Home = () => {
       <h1>LearnHub</h1>
       <p>Hub for Educational Videos</p>
       <div className={classes.cardContainer}>
+        <button>Create new content</button>
         {contentData &&
           contentData.map((item) => {
             return <Contents content={item} key={item.id} />

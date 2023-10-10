@@ -1,6 +1,6 @@
 const Login = () => {
   return (
-    <h1>
+    <form>
       <h1>Login</h1>
       <label>Username</label>
       <input type="text" />
@@ -8,7 +8,7 @@ const Login = () => {
       <input type="password" />
       <button>Login</button>
       <p>Don&apos;t have an account? Register</p>
-    </h1>
+    </form>
   )
 }
 
