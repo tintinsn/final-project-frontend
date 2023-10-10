@@ -8,6 +8,7 @@ import Register from './pages/Register'
 import CreateContent from './pages/CreateContent'
 import GuardRoute from './guard/GuardedRoute'
 import { useAuth } from './providers/AuthProvider'
+import Edit from './pages/Edit'
 
 function App() {
   const { isLoggedIn } = useAuth()
@@ -20,6 +21,7 @@ function App() {
 
         <Route element={<GuardRoute isRouteAccessible={isLoggedIn} redirectRoute="/login" />}>
           <Route path="/new" element={<CreateContent />} />
+          <Route path="/edit/:id" element={<Edit />} />
         </Route>
 
         <Route element={<GuardRoute isRouteAccessible={!isLoggedIn} redirectRoute="/" />}>

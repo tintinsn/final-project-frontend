@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react'
 import { ContentsDTO, CreateContentDTO } from '../types/dto'
 import { useAuth } from '../providers/AuthProvider'
 
-const useContents = (): {
-  contents: ContentsDTO | null
-  isLoading: boolean
-  createContent: (videoUrl: string, comment: string, rating: number) => void
-  disableSubmit: boolean
-} => {
+// {
+//   contents: ContentsDTO | null
+//   isLoading: boolean
+//   createContent: (videoUrl: string, comment: string, rating: number) => void
+//   disableSubmit: boolean
+// }
+const useContents = () => {
   const [contents, setContents] = useState<ContentsDTO | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false)
@@ -31,7 +32,7 @@ const useContents = (): {
 
   const createContent = async (videoUrl: string, comment: string, rating: number) => {
     if (!contents) return
-    console.log(comment, videoUrl, rating)
+    // console.log(comment, videoUrl, rating)
     const newContentBody: CreateContentDTO = {
       videoUrl,
       comment,
@@ -53,6 +54,7 @@ const useContents = (): {
       setDisableSubmit(false)
     }
   }
+
   return { contents, isLoading, createContent, disableSubmit }
 }
 export default useContents

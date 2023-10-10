@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import useContents from '../hook/useContents'
 import { useNavigate } from 'react-router-dom'
 import { Rating } from 'react-simple-star-rating'

@@ -5,7 +5,7 @@ interface IContentProps {
   content: ContentDTO
 }
 
-const Content = ({ content }: IContentProps) => {
+const Contents = ({ content }: IContentProps) => {
   const handleClick = (id: number) => {
     console.log(`clicked ${id}`)
   }
@@ -33,4 +33,4 @@ const Content = ({ content }: IContentProps) => {
     </div>
   )
 }
-export default Content
+export default Contents
