@@ -16,10 +16,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/content/:id" element={<ContentDetail />} />
 
         <Route element={<GuardRoute isRouteAccessible={isLoggedIn} redirectRoute="/login" />}>
           <Route path="/new" element={<CreateContent />} />
-          <Route path="/content/:id" element={<ContentDetail />} />
         </Route>
 
         <Route element={<GuardRoute isRouteAccessible={!isLoggedIn} redirectRoute="/" />}>

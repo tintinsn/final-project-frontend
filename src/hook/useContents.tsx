@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { ContentsDTO, CreateContentDTO } from '../types/dto'
+import { useAuth } from '../providers/AuthProvider'
 
 const useContents = (): {
   contents: ContentsDTO | null
@@ -11,6 +12,7 @@ const useContents = (): {
   const [contents, setContents] = useState<ContentsDTO | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false)
+  const { token } = useAuth()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,17 +37,18 @@ const useContents = (): {
       comment,
       rating,
     }
+
     setDisableSubmit(true)
     try {
       await axios.post('https://api.learnhub.thanayut.in.th/content', newContentBody, {
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       })
       // console.log(contents)
     } catch (err) {
       // throw new Error('Cannot create this content')
-      
     } finally {
       setDisableSubmit(false)
     }
