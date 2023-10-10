@@ -1,0 +1,13 @@
+.container {
+  padding: 0 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo,
+.menuList {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}

@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  text-align: center;
+  padding: 24px;
+}
+.containerContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.cardContent {
+  border: 1px solid #333;
+  border-radius: 9px;
+  padding: 24px 24px;
+}
+
+.author {
+  display: flex;
+  justify-content: space-between;
+}
