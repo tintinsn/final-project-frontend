@@ -24,7 +24,7 @@ const Register = () => {
 
     // Check if passwords match
     if (password !== confirmPassword) {
-      alert('Passwords do not match.')
+      alert('Passwords not match.')
       return
     }
 
