@@ -1,20 +1,25 @@
-import { FormEvent, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import useContents from '../hook/useContents'
 import { useNavigate } from 'react-router-dom'
+import { Rating } from 'react-simple-star-rating'
 
 const CreateContent = () => {
   const [newUrl, setNewUrl] = useState<string>('')
   const [newComment, setNewComment] = useState<string>('')
-  const [newRating, setNewRating] = useState<number>(3)
+  const [newRating, setNewRating] = useState<number>(0)
   const { disableSubmit, createContent } = useContents()
   const navigate = useNavigate()
+
+  const handleRating = (rate: number) => {
+    setNewRating(rate)
+  }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     try {
       // console.log(typeof newUrl, newComment, newRating)
       createContent(newUrl, newComment, newRating)
-      // navigate('/')
+      navigate('/')
     } catch (err) {
       console.log(err)
     }
@@ -27,8 +32,7 @@ const CreateContent = () => {
       <label>Comment (280 characters maximum)</label>
       <input type="text" value={newComment} maxLength={280} onChange={(e) => setNewComment(e.target.value)} />
       <div>
-        <span>rating</span>
-        <span>{newRating}</span>
+        <Rating disableFillHover={true} onClick={handleRating} />
       </div>
       <button type="submit" disabled={disableSubmit}>
         Create
