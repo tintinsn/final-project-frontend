@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { ContentDTO, UpdateContentDTO } from '../types/dto'
 import { useAuth } from '../providers/AuthProvider'
+import { useNavigate } from 'react-router'
 
 // { content: ContentDTO | null; error: string; isLoading: boolean }
 const useContent = (id: string) => {
@@ -10,6 +11,7 @@ const useContent = (id: string) => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false)
   const { token } = useAuth()
+  const navigate = useNavigate()
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
@@ -40,6 +42,7 @@ const useContent = (id: string) => {
           Authorization: `Bearer ${token}`,
         },
       })
+      navigate('/')
     } catch (err) {
       throw new Error('cannot update content')
     } finally {

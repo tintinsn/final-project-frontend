@@ -1,14 +1,14 @@
 import { FormEvent, useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 import useContent from '../hook/useContent'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 const Edit = () => {
   const [newRating, setNewRating] = useState<number>(0)
   const [newComment, setNewComment] = useState<string>('')
   const { id } = useParams()
   const { isLoading, updateContent } = useContent(id || '1')
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   console.log(id)
 
   if (isLoading) return <h1>Loading...</h1>
@@ -21,7 +21,6 @@ const Edit = () => {
     try {
       // console.log(typeof newUrl, newComment, newRating)
       updateContent(newComment, newRating)
-      navigate('/')
     } catch (err) {
       console.log(err)
     }

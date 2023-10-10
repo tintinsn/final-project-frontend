@@ -31,7 +31,7 @@ const ContentDetail = () => {
           <span>{star(content.rating)}</span>
           <p>{content.postedBy.name}</p>
           <p>{content.createdAt}</p>
-          <p>{content.updatedAt}</p>
+          {content.updatedAt !== content.createdAt && <p>{`(Updated on ${new Date(content.updatedAt)} )`}</p>}
           {isLoggedIn && (
             <Link to={`/edit/${content.id}`}>
               <button>Edit</button>
