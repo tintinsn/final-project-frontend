@@ -13,6 +13,7 @@ const Home = () => {
     <div className={classes.container}>
       <h1>LearnHub</h1>
       <p>Hub for Educational Videos</p>
+      <button>Create New Content</button>
       <div className={classes.cardContainer}>
         {contentData &&
           contentData.map((item) => {
