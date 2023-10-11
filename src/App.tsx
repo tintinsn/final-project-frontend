@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import './index.css'
 import Home from './components/Home'
 import Navbar from './components/Navbar'
 import ContentDetail from './pages/ContentDetail'
@@ -13,7 +14,7 @@ import Edit from './pages/Edit'
 function App() {
   const { isLoggedIn } = useAuth()
   return (
-    <>
+    <div className="max-h-screen flex flex-col">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -29,7 +30,7 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Route>
       </Routes>
-    </>
+    </div>
   )
 }
 
