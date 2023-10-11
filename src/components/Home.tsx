@@ -30,9 +30,17 @@ const Home = () => {
           success.
           {/* Unlock the doors of knowledge at LearnHub, */}
         </p>
+
+        {/* <h1>LearnHub</h1>
+        <p>Hub for Educational Videos</p> */}
       </div>
-      <div>
-        <button>Create new content</button>
+
+      {isLoggedIn && (
+        <button onClick={handleClick} className="bg-red-500 my-10 dark:text-white px-4 py-2 rounded">
+          Create New Content
+        </button>
+      )}
+      <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-12 ">
         {contentData &&
           contentData.map((item) => {
             return <Contents content={item} key={item.id} />
