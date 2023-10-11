@@ -24,6 +24,7 @@ const Home = () => {
       {isLoggedIn && <button onClick={handleClick}>Create New Content</button>}
 
       <div className={classes.cardContainer}>
+        <button>Create new content</button>
         {contentData &&
           contentData.map((item) => {
             return <Contents content={item} key={item.id} />
