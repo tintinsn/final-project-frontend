@@ -8,6 +8,7 @@ const Home = () => {
   const { contents, isLoading } = useContents()
   const navigate = useNavigate()
   if (isLoading) return <h1>LOADING...</h1>
+
   if (!contents) return
 
   const handleClick = () => {

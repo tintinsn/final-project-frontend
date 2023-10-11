@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react'
 import useContents from '../hook/useContents'
-import { Rating } from 'react-simple-star-rating'
+import ReactStars from 'react-stars'
 
 const CreateContent = () => {
   const [newUrl, setNewUrl] = useState<string>('')
@@ -10,6 +10,7 @@ const CreateContent = () => {
 
   const handleRating = (rate: number) => {
     setNewRating(rate)
+    console.log(rate)
   }
 
   const handleSubmit = async (e: FormEvent) => {
@@ -55,18 +56,6 @@ const CreateContent = () => {
               Comment
             </label>
             <div className="mt-2">
-              {/* <input
-                id="comment"
-                name="comment"
-                type="text"
-                autoComplete="comment"
-                required
-                className="block w-full rounded-md border-0 py-1.5 pl-4 pr-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                value={newComment}
-                maxLength={280}
-                onChange={(e) => setNewComment(e.target.value)}
-              /> */}
-
               <textarea
                 id="comment"
                 name="comment"
@@ -83,7 +72,7 @@ const CreateContent = () => {
             </div>
             <div className="w-full">
               <p>Rating: </p>
-              <Rating className="w-full" disableFillHover={true} onClick={handleRating} />
+              <ReactStars count={5} onChange={handleRating} size={24} color2={'#ffd700'} />
             </div>
           </div>
 
