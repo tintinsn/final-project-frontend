@@ -1,11 +1,17 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { ContentDTO } from '../types/dto'
+import { ContentDTO, UpdateContentDTO } from '../types/dto'
+import { useAuth } from '../providers/AuthProvider'
+import { useNavigate } from 'react-router'
 
-const useContent = (id: string): { content: ContentDTO | null; error: string; isLoading: boolean } => {
+// { content: ContentDTO | null; error: string; isLoading: boolean }
+const useContent = (id: string) => {
   const [content, setContent] = useState<ContentDTO | null>(null)
   const [error, setError] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [disableSubmit, setDisableSubmit] = useState<boolean>(false)
+  const { token } = useAuth()
+  const navigate = useNavigate()
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)
@@ -13,6 +19,7 @@ const useContent = (id: string): { content: ContentDTO | null; error: string; is
         const res = await axios<ContentDTO>(`https://api.learnhub.thanayut.in.th/content/${id}`)
 
         setContent(res.data)
+        
       } catch (err) {
         setError('Data not found')
       } finally {
@@ -21,7 +28,29 @@ const useContent = (id: string): { content: ContentDTO | null; error: string; is
     }
     fetchData()
   }, [id])
-  return { content, isLoading, error }
+
+  const updateContent = async (comment: string, rating: number) => {
+    if (!content) return
+    const updateContentBody: UpdateContentDTO = {
+      comment,
+      rating,
+    }
+    setDisableSubmit(true)
+    try {
+      await axios.patch(`https://api.learnhub.thanayut.in.th/content/${id}`, updateContentBody, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      navigate('/')
+    } catch (err) {
+      throw new Error('cannot update content')
+    } finally {
+      setDisableSubmit(false)
+    }
+  }
+  return { content, isLoading, error, updateContent, disableSubmit }
 }
 
 export default useContent
