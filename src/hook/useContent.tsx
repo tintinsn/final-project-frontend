@@ -19,7 +19,6 @@ const useContent = (id: string) => {
         const res = await axios<ContentDTO>(`https://api.learnhub.thanayut.in.th/content/${id}`)
 
         setContent(res.data)
-        
       } catch (err) {
         setError('Data not found')
       } finally {
@@ -50,7 +49,25 @@ const useContent = (id: string) => {
       setDisableSubmit(false)
     }
   }
-  return { content, isLoading, error, updateContent, disableSubmit }
+  const deleteContent = async () => {
+    if (!content) return
+    setDisableSubmit(true)
+    try {
+      await axios.delete(`https://api.learnhub.thanayut.in.th/content/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      navigate('/')
+    } catch (err) {
+      throw new Error('cannot update content')
+    } finally {
+      setDisableSubmit(false)
+    }
+  }
+
+  return { content, isLoading, error, updateContent, disableSubmit, deleteContent }
 }
 
 export default useContent
