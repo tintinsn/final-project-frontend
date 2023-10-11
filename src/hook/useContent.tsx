@@ -19,6 +19,7 @@ const useContent = (id: string) => {
         const res = await axios<ContentDTO>(`https://api.learnhub.thanayut.in.th/content/${id}`)
 
         setContent(res.data)
+        
       } catch (err) {
         setError('Data not found')
       } finally {

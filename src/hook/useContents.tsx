@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { ContentsDTO, CreateContentDTO } from '../types/dto'
 import { useAuth } from '../providers/AuthProvider'
+import { useNavigate } from 'react-router-dom'
 
 // {
 //   contents: ContentsDTO | null
@@ -14,6 +15,7 @@ const useContents = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [disableSubmit, setDisableSubmit] = useState<boolean>(false)
   const { token } = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,6 +49,7 @@ const useContents = () => {
           Authorization: `Bearer ${token}`,
         },
       })
+      navigate('/')
       // console.log(contents)
     } catch (err) {
       // throw new Error('Cannot create this content')
